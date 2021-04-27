@@ -177,7 +177,7 @@ int main()
 	{
 		cout << "list - create list list" << endl << "clear - clear a list" << endl << "add - add a number" << endl;
 		cout << "check - check a list" << endl << "delete - delete a number" << endl;
-		cout << "add rand - add a random number" << endl << "close - close the program" << endl;
+		cout << "rand - add a random number" << endl << "close - close the program" << endl;
 	}
 	while (command != "close")
 	{
@@ -199,7 +199,10 @@ int main()
 			cout << endl;
 		}
 		else if (command == "clear")
+		{
 			lst.clear();
+			cout << "list was cleared" << endl;
+		}
 		else if (command == "add")
 		{
 			int a, b;
@@ -207,7 +210,7 @@ int main()
 			cin >> a >> b;
 			lst.insert(a, b);
 		}
-		else if (command == "add rand")
+		else if (command == "rand")
 		{
 			int b;
 			cout << "enter index" << endl;
@@ -227,6 +230,8 @@ int main()
 			{
 				cout << lst[i] << " ";
 			}
+			if (lst.getsize() == 0)
+				cout << "nothing";
 			cout << endl;
 		}
 		else
