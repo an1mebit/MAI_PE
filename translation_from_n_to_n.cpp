@@ -1,54 +1,57 @@
 #include <iostream>
-#include <string>
+
 using namespace std;
+int desit = 0;
 
-int pow(int n,int s)
+int Demical(int sistem1)
 {
-    int res = 1;
-    for(size_t i = 0; i != s; ++i)
-        res*=n;
-    return res;
+    char num;
+    cin >> num >> num;
+    while (num != ';')
+    {
+        desit *= sistem1;
+        if (num >= '0' && num <= '9') {
+            desit += static_cast<int>(num) - '0';
+        }
+        else if (num >= 'A') {
+            desit += static_cast<int>(num) - 'A' + 10;
+        }
+        cin >> num;
+    }
+    return num;
 }
 
-void ten_base (int in, int base)
-{
-    if (in < base) {
-        if (in % base < 10){
-        cout << char (in % base + '0');
+void translate(int sistem2) {
+    int max = 1;
+    char num;
+    int k;
+    while (max <= desit) {
+        max *= sistem2;
     }
-    else {
-        cout << char (in % base + 'A'- 10);
-    }
-        return;
-    }
-    ten_base (in / base, base);
-    if (in % base < 10){
-        cout << char(in % base + '0');
-    }
-    else {
-        cout<< char (in % base + 'A'- 10);
+    max /= sistem2;
+
+    while (max >= 0)
+    {
+        int m = desit / max;
+        desit = desit - m * max;
+        k = m;
+        if (k <= 9) {
+            num = '0' + k;
+        }
+        else {
+            num = 'A' + k - 10;
+        }
+        cout << num;
+        max /= sistem2;
     }
 }
- 
- 
-int main()
-{
-    int basein, baseout, sum=0, a, rank = 0;
-    string str;
-	cout << "Enter num & base for in n out" << endl;
-	cin >> basein >> str >> baseout;
-    rank = str.size() - 1;
-	for (int i = 0; i < str.size(); i++) {
-        if (isdigit(str[i])) {
-            a = str[i] - '0';
-        }
-        if (isalpha(str[i])) {
-            a = str[i] - 'A' + 10;
-        }
-        sum += a * pow (basein , rank);
-        rank--;
-    }
-    cout << sum << endl;
-    ten_base (sum , baseout);
-    return 0;
+
+int main() {
+    int sistem1, sistem2;
+    char num = 0;
+    cin >> sistem1;
+    num = Demical(sistem1);
+    cin >> sistem2;
+    cout << desit << endl;
+    translate(sistem2);
 }
